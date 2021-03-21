@@ -1,3 +1,4 @@
+//Grabs and displays the newest quote from the database
 function handle_one() {
   let xhttp = new XMLHttpRequest();
   document.getElementById("main").innerHTML = "";
@@ -29,6 +30,7 @@ function handle_one() {
   xhttp.send(null);
 }
 
+//Grabs and displays all quotes in database
 function handle_all() {
   let xhttp = new XMLHttpRequest();
   document.getElementById("main").innerHTML = "";
