@@ -23,24 +23,28 @@ var server = http.createServer(function (req, resp) {
   });
   let q = url.parse(req.url, true);
   console.log(q);
+  // reader request, grab all quotes
   if (q.pathname == "/individualassignment/reader/") {
     let sql = "SELECT * FROM Quotes";
     con.query(sql, function (err, result) {
       if (err) throw err;
       resp.end(JSON.stringify(result));
     });
+    //reader request, grab most recent quote
   } else if (q.pathname == "/individualassignment/reader/1") {
     let sql = "SELECT * FROM Quotes ORDER BY ID DESC LIMIT 0,1";
     con.query(sql, function (err, result) {
       if (err) throw err;
       resp.end(JSON.stringify(result));
     });
+    // admin request
   } else if (q.pathname == "/individualassignment/admin/") {
     let sql = "SELECT * FROM Quotes";
     con.query(sql, function (err, result) {
       if (err) throw err;
       resp.end(JSON.stringify(result));
     });
+    //Post request, adds a value into database
     if (req.method == "POST") {
       let name;
       let quote;
@@ -64,6 +68,7 @@ var server = http.createServer(function (req, resp) {
           console.log("1 record inserted");
         });
       });
+      //Put request, updates value in database
     } else if (req.method == "PUT") {
       let name;
       let quote;
@@ -88,6 +93,7 @@ var server = http.createServer(function (req, resp) {
           console.log("1 record updated");
         });
       });
+      //delete request, Deletes value in database
     } else if (req.method == "DELETE") {
       let id;
 
