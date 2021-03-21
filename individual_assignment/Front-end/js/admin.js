@@ -1,5 +1,6 @@
 let main = document.getElementById("main");
 
+//populates the page with all values in the database.
 function populate() {
   let xhttp = new XMLHttpRequest();
   xhttp.open(
@@ -52,6 +53,7 @@ function quote(name, quote, id) {
   this.id = id;
 }
 
+//handles the deletion of a database value
 function handle_delete() {
   let id = event.target.id.substring(0, 8);
   console.log(id);
@@ -65,6 +67,7 @@ function handle_delete() {
   xhttp.send(id);
 }
 
+//handles the update of a database value
 function handle_update() {
   let id = event.target.id.substring(0, 8);
   const name = document.getElementById(id + "name");
@@ -84,6 +87,7 @@ function handle_update() {
   }
 }
 
+//handles the addition of a database value
 function handle_add() {
   let id = uuidv4();
   let newInput =
@@ -111,6 +115,8 @@ function handle_add() {
   xhttp.send(JSON.stringify(p));
 }
 
+
+//generates a random identifier value for element ids
 function uuidv4() {
   return "xxxxxxxx".replace(/[xy]/g, function (c) {
     var r = (Math.random() * 16) | 0,
